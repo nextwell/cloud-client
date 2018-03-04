@@ -24,15 +24,15 @@ class FileCard extends React.Component {
 	    });
 	}
 	render(){
+		let data = this.props;
 		return(
 			<Card
 			    style={{ width: 150, margin: '0 auto' }}
 			    cover={<Icon style={{ fontSize: 40, marginTop: 12 }} type="file" />}
-			    actions={[<Button type="primary" shape="circle" icon="download"/>, <Button shape="circle" icon="share-alt"/>,  <Button type="danger" shape="circle" icon="delete" onClick={this.showDeleteConfirm}/>]}
-			  >
+			    actions={[<Button type="primary" shape="circle" icon="download"/>, <Button shape="circle" icon="share-alt"/>,  <Button type="danger" shape="circle" icon="delete" onClick={this.showDeleteConfirm}/>]}>
 			    <Meta
-			      title="image.jpg"
-			      description="Размер: 12кб"
+			      title={data.fileName}
+			      description={"Размер: " + data.fileSize}
 			    />
 			</Card>
 

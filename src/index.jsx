@@ -1,69 +1,64 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import {Provider} from 'react-redux';
+
 import { Layout, Menu, Icon, Row, Col } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 
 import { SideBar } from './components/SideBar.jsx';
 import { FileCard } from './components/FileCard.jsx';
+import { MainFunctions } from './components/MainFunctions.jsx';
+
+import { store } from './store/store.jsx';
+
+import FilesList from './containers/files-list.jsx';
+
+import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 
 
 let app = document.getElementById('root');
 
 
-let files = [];
-
-for (var i=0; i<10; i++) {
-	let item = <Col className='gutter-row' style={{marginBottom: 10}} xxl={3} xl={4} lg={6} md={6} sm={12}> <FileCard /> </Col>;
-	files.push(item);
-}
 
 
 class App extends React.Component {
 	render(){
 		return (
-			<Layout style={{height: '100%'}}>
-				<Sider  breakpoint="lg"
-      					collapsedWidth="0"
-      					onCollapse={(collapsed, type) => { console.log(collapsed, type); }}>
-					<SideBar />
-				</Sider>
-				<Layout>
-					<Header style={{ background: '#fff', padding: 0 }}>
-					<Menu
-				        theme="light"
-				        mode="horizontal"
-				        style={{ lineHeight: '64px' }}
-				      >
-					        <Menu.Item key="1">
-					        	<Icon type="upload" />
-					        	Загрузить
-					        </Menu.Item>
-					        <Menu.Item key="2">
-					        	<Icon type="folder-add" />
-					        	Создать папку
-					        </Menu.Item>
-				    </Menu>
-						
-					</Header>
-				    <Content style={{ margin: '24px 16px 0', height: '100%' }}>
-				        <div style={{ padding: 24, background: '#fff', height: '100%' }}>
+			<Provider store={store}>
+				<Layout style={{height: '100%'}}>
+					<Sider  breakpoint="lg"
+	      					collapsedWidth="0"
+	      					onCollapse={(collapsed, type) => { console.log(collapsed, type); }}>
+						<SideBar />
+					</Sider>
+					<Layout>
+						<Header style={{ background: '#fff', padding: 0 }}>
+							<MainFunctions />
+						</Header>
+	     
 
-				        	<Row gutter={12}>
 
-					        	{files}
+					    <Content style={{ margin: '24px 16px 0', height: 'auto', overflowY: 'auto' }}>
+					        <div style={{ padding: 24, background: '#fff', height: '100%' }}>
 
-				        	</Row>
+					        	<Row gutter={12}>
 
-				        	
+						        	<FilesList />
 
-				        </div>
-				    </Content>
-				    <Footer style={{ textAlign: 'center' }}>
-				        AkiCloud ©2018 Created by Vladimir Ch.
-				    </Footer>
+					        	</Row>
+
+					        	
+
+					        </div>
+					    </Content>
+					    <Footer style={{ textAlign: 'center' }}>
+					        AkiCloud ©2018 Created by Vladimir Ch.
+					    </Footer>
+					</Layout>
 				</Layout>
-			</Layout>
+
+			</Provider>
 		);
 	}
 }
