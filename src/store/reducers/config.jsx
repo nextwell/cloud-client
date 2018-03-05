@@ -1,5 +1,5 @@
 export default function(){
 	return {
-		currentPage: 'main'
+		Location: 'files'
 	}
 }
