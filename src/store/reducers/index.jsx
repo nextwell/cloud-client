@@ -5,7 +5,8 @@ import FilesReducers from './files.jsx';
 
 const allReducers = combineReducers ({
 	user: UserReducers,
-	files: FilesReducers
+	files: FilesReducers,
+	config: ConfigReducers
 })
 
 export default allReducers;

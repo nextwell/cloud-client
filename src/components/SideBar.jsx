@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Menu, Icon, Button } from 'antd';
 
-class SideBar extends React.Component {
+export default class SideBar extends React.Component {
 
   render() {
     return (
@@ -27,5 +27,3 @@ class SideBar extends React.Component {
     );
   }
 }
-
-export { SideBar };

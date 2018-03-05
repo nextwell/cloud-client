@@ -22,7 +22,7 @@ const props = {
   },
 };
 
-class MainFunctions extends React.Component {
+export default class MainFunctions extends React.Component {
     constructor(props) {
         super(props);
         this.state = {  uploaderModal: false };
@@ -42,7 +42,7 @@ class MainFunctions extends React.Component {
                     <Button icon="upload" onClick={() => this.setUploaderVisible(true)}>Загрузить</Button>
                 </Menu.Item>
                 <Modal
-                  title="Vertically centered modal dialog"
+                  title="Загрузка файлов"
                   wrapClassName="vertical-center-modal"
                   visible={this.state.uploaderModal}
                   onOk={() => this.setUploaderVisible(false)}
@@ -54,13 +54,11 @@ class MainFunctions extends React.Component {
                         <p className="ant-upload-drag-icon">
                           <Icon type="inbox" />
                         </p>
-                        <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                        <p className="ant-upload-hint">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
+                        <p className="ant-upload-text">Кликните или перетащите файл для загрузки</p>
+                        <p className="ant-upload-hint">Поддерживается как одиночная загрузка, так и множественная.</p>
                     </Dragger>
                 </Modal>
             </Menu>
         );
     }
 }
-
-export { MainFunctions };
