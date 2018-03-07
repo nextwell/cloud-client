@@ -3,12 +3,18 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import SideBar from './../components/SideBar.jsx';
-import MainFunctions from './../components/MainFunctions.jsx';
-import FilesList from './files-list.jsx';
-
 import { Layout, Menu, Icon, Row, Col } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
+
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+
+import Home from './../components/Home.jsx';
+import SideBar from './../components/SideBar.jsx';
+
+import MarkDown from './../components/MarkDown.jsx';
+
+import Settings from './../components/Settings.jsx';
 
 
 
@@ -18,37 +24,17 @@ class WebPage extends React.Component {
 	}
 	render(){
 		return(
-			<Layout style={{height: '100%'}}>
-				<Sider  breakpoint="lg"
-      					collapsedWidth="0"
-      					onCollapse={(collapsed, type) => { console.log(collapsed, type); }}>
-					<SideBar />
-				</Sider>
-				<Layout>
-					<Header style={{ background: '#fff', padding: 0 }}>
-						<MainFunctions />
-					</Header>
-     
-
-
-				    <Content style={{ margin: '24px 16px 0', height: 'auto', overflowY: 'auto' }}>
-				        <div style={{ padding: 24, background: '#fff', height: '100%' }}>
-
-				        	<Row gutter={12}>
-
-					        	<FilesList />
-
-				        	</Row>
-
-				        	
-
-				        </div>
-				    </Content>
-				    <Footer style={{ textAlign: 'center' }}>
-				        AkiCloud ©2018 Created by Vladimir Ch.
-				    </Footer>
+			<Router>
+				<Layout style={{height: '100%'}}>
+					<Sider  breakpoint="lg"
+	      					collapsedWidth="0"
+	      					onCollapse={(collapsed, type) => { console.log(collapsed, type); }}>
+						<SideBar />
+					</Sider>
+					<Route exact path='/' component={Home} />
+					<Route path='/settings' component={Settings} />
 				</Layout>
-			</Layout>
+			</Router>
 		)
 	}
 }

@@ -23,12 +23,12 @@ module.exports = {
 	        'process.env': {
 	            NODE_ENV: JSON.stringify('development')
 	        }
-	    })/*,
+	    }),
 	    new BrowserSyncPlugin({
 	    	host: 'localhost',
 	    	port: 3000,
 	    	files: ['./dist/*.html', './dist/css/*css', './dist/js/*.js', './dist/js/*.jsx'],
 	    	server: { baseDir: ['dist'] }
-	    })*/
+	    })
 	]
 }
