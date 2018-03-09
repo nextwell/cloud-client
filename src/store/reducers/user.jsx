@@ -1,9 +1,10 @@
 export default function(){
 	return {
-		name: 'Vladimir Ch.',
+		name: 'Владимир',
+		surname: 'Петров',
 		regDate: '25.01.2018',
 		mail: 'test@gmail.com',
-		maxSize: '1024мб',
-		currentSize: '250мб'
+		maxSize: 1024,
+		currentSize: 250
 	}
 }
