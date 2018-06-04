@@ -31,7 +31,7 @@ class WebPage extends React.Component {
 	      					onCollapse={(collapsed, type) => { console.log(collapsed, type); }}>
 						<SideBar />
 					</Sider>
-					<Route exact path='/' component={Home} />
+					<Route exact path='/home' component={Home} />
 					<Route path='/settings' component={Settings} />
 				</Layout>
 			</Router>

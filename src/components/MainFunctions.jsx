@@ -8,7 +8,7 @@ const Dragger = Upload.Dragger;
 const props = {
   name: 'file',
   multiple: true,
-  action: "jsonplaceholder.typicode.com/posts/",
+  action: "http:/\/localhost:8080/upload",
   onChange(info) {
     const status = info.file.status;
     if (status !== 'uploading') {

@@ -14,7 +14,7 @@ export default class SideBar extends React.Component {
             defaultSelectedKeys={['1']}>
 
                 <Menu.Item key="1">
-                    <Link to='/'>
+                    <Link to='/home'>
                         <Icon type="home" />
                         Все файлы
                     </Link>

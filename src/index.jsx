@@ -9,16 +9,24 @@ import { store } from './store/store.jsx';
 
 import WebPage from './containers/WebPage.jsx';
 
+import { fetchFiles } from './actions/actionFiles.jsx';
+import { fetchUser } from './actions/actionUser.jsx';
 
 
 let app = document.getElementById('root');
 
 
-
+function loadData() {
+	store.dispatch(fetchFiles('/api/files'));
+};
 
 
 
 class App extends React.Component {
+	componentDidMount(){
+		loadData();
+		console.log(1);
+	}
 	render(){
 		return (
 			<Provider store={store}>
@@ -29,6 +37,7 @@ class App extends React.Component {
 		);
 	}
 }
+
 
 
 

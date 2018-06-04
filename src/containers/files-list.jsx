@@ -8,10 +8,11 @@ import { FileCard } from '../components/FileCard.jsx';
 
 class FilesList extends React.Component {
 	showList(){
-		return this.props.files.map ((file) => {
+		console.log(this.props.files.data);
+		return this.props.files.data.map ((file) => {
 			return (
 				<Col key={file.id} className='gutter-row' style={{marginBottom: 10}} xxl={3} xl={4} lg={6} md={6} sm={12}>
-					<FileCard fileName={file.name} fileSize={file.size} />
+					<FileCard fileName={file.name} fileSize={file.size/1024/1024} id={file._id} key={file._id} />
 				</Col>
 			)
 		})

@@ -1,7 +1,10 @@
-import {createStore} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 
 import AllReducers from './reducers/index.jsx';
 
-const store = createStore(AllReducers);
+
+import thunk from 'redux-thunk';
+
+const store = createStore(AllReducers, applyMiddleware(thunk));
 
 export { store };
