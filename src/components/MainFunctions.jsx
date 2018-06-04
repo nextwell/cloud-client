@@ -16,6 +16,7 @@ const props = {
     }
     if (status === 'done') {
       message.success(`${info.file.name} загружен успешно.`);
+      console.log(info);
     } else if (status === 'error') {
       message.error(`${info.file.name} не загрузился, ошибка.`);
     }

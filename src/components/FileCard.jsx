@@ -1,5 +1,13 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
+import * as types from './../actions/actionTypes.jsx';
+
+import {store} from './../store/store.jsx';
+
+
+
 import { Card, Icon, Avatar, Button, Popconfirm, message } from 'antd';
 const { Meta } = Card;
 
@@ -8,15 +16,16 @@ import axios from 'axios';
 
 
 class FileCard extends React.Component {
-	constructor(){
-		super();
+	constructor(props, context){
+		super(props, context)
 		this.delete = this.delete.bind(this);
 	}
 	delete(e) {
-	    console.log("True");
-	    console.log(this.props)
 	    axios.get(`/remove/${this.props.id}`)
 	    	.then(function(response) { /* idk */ })
+
+	    store.dispatch({type: types.DELETE_FILE, data: this.props.id})
+	    
 
 	}
 
@@ -26,6 +35,7 @@ class FileCard extends React.Component {
 		console.log(data);
 		return(
 			<Card
+				hoverable={true}
 			    style={{ width: 150, margin: '0 auto' }}
 			    cover={<Icon style={{ fontSize: 40, marginTop: 12 }} type="file" />}
 			    actions={[<Button type="primary" href={downloadLink} shape="circle" icon="download"/>, 
@@ -36,6 +46,7 @@ class FileCard extends React.Component {
 			    <Meta
 			      title={data.fileName}
 			      description={"Размер: " + (data.fileSize).toFixed(2) + " МБ"}
+			      style={{fontSize: 12}}
 			    />
 			</Card>
 
@@ -44,4 +55,4 @@ class FileCard extends React.Component {
 	}
 }
 
-export { FileCard };
+export default connect()(FileCard);

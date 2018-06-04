@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import { Col } from 'antd';
 
-import { FileCard } from '../components/FileCard.jsx';
+import FileCard from '../components/FileCard.jsx';
 
 class FilesList extends React.Component {
 	showList(){

@@ -16,10 +16,13 @@ const AutoCompleteOption = AutoComplete.Option;
 
 
 class Settings extends React.Component {
+
   render() {
+  	// test
   	const { getFieldDecorator } = this.props.form;
-  	let userData = this.props.user;
-  	let customPercent = (userData.currentSize/userData.maxSize)*100;
+  	let userData = this.props.user.data; 
+  	userData.currentSize = 128; // test
+  	let customPercent = (userData.currentSize/(userData.maxSize/1000/1000))*100;
     return (
     	<Layout>
     		<Content style={{ margin: '24px 16px 0', marginTop: 0, height: '100%' }}>
@@ -27,7 +30,7 @@ class Settings extends React.Component {
 			        <Row type="flex" justify="space-around" align="middle">
 				      <Col span={10}>
 				      	<div>
-			         		<p>Занято пространства <span style={{color: 'red'}}>{userData.currentSize}</span>/<span style={{color: 'green'}}>{userData.maxSize}</span> Мегабайт</p>
+			         		<p>Занято пространства <span style={{color: 'red'}}>{userData.currentSize}</span>/<span style={{color: 'green'}}>{userData.maxSize/1000/1000}</span> Мегабайт</p>
 			        		<Progress percent={customPercent} format={percent => `${parseInt(percent)}%`} />
 			        	</div>
 			        	<Form>
