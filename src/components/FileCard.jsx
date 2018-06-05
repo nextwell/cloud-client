@@ -42,8 +42,8 @@ class FileCard extends React.Component {
 				else {
 					let url = document.location.origin;
 					Modal.success({
-					    title: 'Готово',
-					    content: `Файл теперь доступен по этой ссылке - ${url + data.link}`,
+					    title: 'Готово, файл доступен по этой ссылке!',
+					    content: url + data.link,
 				    });
 				}
 			})
@@ -69,7 +69,7 @@ class FileCard extends React.Component {
 			    <Meta
 			      title={data.fileName}
 			      description={"Размер: " + (data.fileSize).toFixed(2) + " МБ"}
-			      style={{fontSize: 12}}
+			      style={{fontSize: 11}}
 			    />
 			</Card>
 

@@ -21,18 +21,12 @@ class Settings extends React.Component {
   	// test
   	const { getFieldDecorator } = this.props.form;
   	let userData = this.props.user.data; 
-  	userData.currentSize = 128; // test
-  	let customPercent = (userData.currentSize/(userData.maxSize/1000/1000))*100;
     return (
     	<Layout>
     		<Content style={{ margin: '24px 16px 0', marginTop: 0, height: '100%' }}>
 		        <div style={{ padding: 24, background: '#fff', height: '100%' }}>
 			        <Row type="flex" justify="space-around" align="middle">
 				      <Col span={10}>
-				      	<div>
-			         		<p>Занято пространства <span style={{color: 'red'}}>{userData.currentSize}</span>/<span style={{color: 'green'}}>{userData.maxSize/1000/1000}</span> Мегабайт</p>
-			        		<Progress percent={customPercent} format={percent => `${parseInt(percent)}%`} />
-			        	</div>
 			        	<Form>
 					        <FormItem
 					 
