@@ -16,9 +16,35 @@ const AutoCompleteOption = AutoComplete.Option;
 
 
 class Settings extends React.Component {
+	constructor(props){
+		super(props);
+		this.state = {
+		    confirmDirty: false,
+		    autoCompleteResult: [],
+	    };
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.validateToNextPassword = this.validateToNextPassword.bind(this);
+	}
+	handleSubmit(e){
+		e.preventDefault();
+		this.props.form.validateFieldsAndScroll((err, values) => {
+	      	if (!err) {
+	        	console.log(values);
+	      	}
+	    });
+	}
+	validateToNextPassword(rule, value, callback) {
+	    const form = this.props.form;
+	    if (value && this.state.confirmDirty) {
+	      	form.validateFields(['confirm'], { force: true });
+	    }
+	    callback();
+	}
+
+
+
 
   render() {
-  	// test
   	const { getFieldDecorator } = this.props.form;
   	let userData = this.props.user.data; 
     return (
@@ -27,19 +53,23 @@ class Settings extends React.Component {
 		        <div style={{ padding: 24, background: '#fff', height: '100%' }}>
 			        <Row type="flex" justify="space-around" align="middle">
 				      <Col span={10}>
-			        	<Form>
+			        	<Form onSubmit={this.handleSubmit}>
 					        <FormItem
 					 
 					          label="Ваше имя"
 					        >
-					            <Input type="text" defaultValue={userData.name} />
+					        	{getFieldDecorator('name', {initialValue: userData.name} )(
+						            <Input type="text" name="name" />
+						        )}
+					            
 					        </FormItem>
 					        <FormItem
 					     
 					          label="Ваша фамилия"
 					        >
-					         
-					            <Input type="text" defaultValue={userData.surname} />
+					        	{getFieldDecorator('surname', {initialValue: userData.surname} )(
+						            <Input type="text" name="surname" />
+						        )}
 
 					        </FormItem>
 
@@ -47,8 +77,10 @@ class Settings extends React.Component {
 					    
 					          label="Ваш новый пароль"
 					        >
+					        	{getFieldDecorator('new_password')(
+						            <Input type="password" name="new_password" />
+						        )}
 					          
-					            <Input type="password"  />
 				
 					        </FormItem>
 
@@ -56,8 +88,11 @@ class Settings extends React.Component {
 					    
 					          label="Подтвердите новый пароль"
 					        >
+
+					        	{getFieldDecorator('new_password_2')(
+						            <Input type="password" name="new_password_2" />
+						        )}
 					          
-					            <Input type="password"  />
 				
 					        </FormItem>
 
@@ -73,7 +108,7 @@ class Settings extends React.Component {
 							              validator: this.validateToNextPassword,
 							            }],
 						            })(
-						            <Input type="password" />
+						            <Input type="password" name="old_password"/>
 						        )}
 				
 					        </FormItem>
