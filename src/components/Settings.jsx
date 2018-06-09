@@ -3,10 +3,16 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import axios from 'axios';
+
+import { store } from './../store/store.jsx';
+
 import MarkDown from './MarkDown.jsx';
 
+import { fetchUser } from './../actions/actionUser.jsx';
 
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, Layout, Progress } from 'antd';
+
+import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, Layout, Progress, message } from 'antd';
 
 const { Content } = Layout;
 
@@ -29,7 +35,20 @@ class Settings extends React.Component {
 		e.preventDefault();
 		this.props.form.validateFieldsAndScroll((err, values) => {
 	      	if (!err) {
-	        	console.log(values);
+	        	axios.post('/settings', values )
+				  .then(function (response) {
+				      let data = response.data;
+				      if ( data.type == 'error' ){
+				      	  message.error(`${data.msg}`, 5);
+				      }
+				      else {
+				      	  store.dispatch(fetchUser('/api/user'));
+				      	  message.success(`${data.msg}`, 5);
+				      }
+				   })
+				  .catch(function (error) {
+				      console.log(error);
+				  });
 	      	}
 	    });
 	}
