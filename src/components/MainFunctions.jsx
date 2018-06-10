@@ -12,7 +12,7 @@ const Dragger = Upload.Dragger;
 const props = {
   name: 'file',
   multiple: true,
-  action: "http:/\/localhost:8080/upload",
+  action: `${document.origin}/upload`,
   onChange(info) {
     const status = info.file.status;
     if (status !== 'uploading') {
@@ -20,7 +20,6 @@ const props = {
     }
     if (status === 'done') {
       message.success(`${info.file.name} загружен успешно.`);
-      console.log(info);
       store.dispatch(fetchFiles('/api/files'));
     } else if (status === 'error') {
       message.error(`${info.file.name} не загрузился, ошибка.`);
